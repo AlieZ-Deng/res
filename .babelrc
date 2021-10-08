@@ -1,0 +1,54 @@
+{
+  "env": {
+    "node": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ],
+        "react",
+        "stage-0"
+      ],
+      "plugins": [
+        [
+          "transform-runtime",
+          {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+          }
+        ]
+      ]
+    },
+    "development": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "browsers": [">1%", "last 2 versions", "not ie <= 8"]
+            }
+          }
+        ],
+        "react",
+        "stage-0"
+      ],
+      "plugins": [
+        [
+          "transform-runtime",
+          {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+          }
+        ]
+      ]
+    }
+  }
+}
