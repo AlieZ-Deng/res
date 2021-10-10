@@ -3,14 +3,16 @@ import React from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter, Route } from "react-router";
 import { renderRoutes, matchRoutes } from "react-router-config";
-import routes from "./../routes/index";
-import { getStore } from "../store";
 import { Provider } from "react-redux";
 import proxy from "express-http-proxy";
 import { Helmet } from "react-helmet";
 
+import routes from "./../routes/index";
+import { getStore } from "../store";
+import staticConfig from "./staticConfig";
+
 const app = express();
-app.use(express.static("public"));
+app.use(express.static("./build/client"));
 
 // 使用代理中转请求
 app.use(
@@ -28,7 +30,6 @@ const RouteWrap = () => {
       {/* {routes.map((route) => {
         return <Route {...route} />;
       })} */}
-      {/* 多级嵌套路由使用 renderRoutes */}
       {renderRoutes(routes)}
     </div>
   );
@@ -75,11 +76,14 @@ app.get("*", async (req, res) => {
 
     const helmet = Helmet.renderStatic();
 
+    const sources = staticConfig();
+
     const target = `<html>
           <head>
               ${helmet.title.toString()}
               ${helmet.meta.toString()}
-              <link rel="stylesheet" type="text/css" href="/common.css">
+              <link  href="https://g.csdnimg.cn/static/logo/favicon32.ico"  rel="shortcut icon" type="image/x-icon" />
+              ${sources.cssFiles.join("")}
           </head>
           <body>
               <h1>this is a tag</h1>
@@ -92,7 +96,7 @@ app.get("*", async (req, res) => {
               store : ${JSON.stringify(store.getState())}
             }
           </script>
-          <script src="/index.js"></script>
+          ${sources.jsFiles.join("")}
       </html>`;
 
     // 判断页面不存在的时候，还需要修改状态码

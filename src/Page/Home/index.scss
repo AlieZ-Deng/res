@@ -3,5 +3,12 @@ body {
 }
 
 .test {
+  display: flex;
   color: green;
+}
+
+img{
+  display: block;
+  width: 900px;
+  height: auto;
 }

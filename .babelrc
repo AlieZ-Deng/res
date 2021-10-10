@@ -22,7 +22,8 @@
             "regenerator": true,
             "moduleName": "babel-runtime"
           }
-        ]
+        ],
+        "./webpack/babel/plugins/no-require-css"
       ]
     },
     "development": {
