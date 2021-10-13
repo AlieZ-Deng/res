@@ -7,7 +7,6 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const webpack = require("webpack");
 
 const baseConfig = require("./webpack.base.js");
 const resolvePath = (pathstr) => path.resolve(__dirname, pathstr);
@@ -43,13 +42,9 @@ const clientProdConfig = {
     new CleanWebpackPlugin(),
     // 生成文件清单
     new WebpackManifestPlugin({}),
-    // 注入标识
-    // new webpack.DefinePlugin({
-    //   "process.env": { NODE_ENV: "production" },
-    //   //
-    // }),
   ],
   optimization: {
+    // 分离 webpack 本身的 runtime 代码
     runtimeChunk: {
       name: "runtime",
     },

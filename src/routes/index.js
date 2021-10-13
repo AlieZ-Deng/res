@@ -3,7 +3,7 @@ import React from "react";
 import Home from "../Page/Home";
 import Login from "../Page/Login";
 import Header from "../components/Header";
-import App from "../App";
+import App from "../components/Common/App";
 import NotFound from "../Page/NotFound";
 import NotLogin from "../Page/NotLogin";
 

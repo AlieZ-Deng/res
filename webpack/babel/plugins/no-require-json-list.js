@@ -1,25 +1,24 @@
 const chalk = require("chalk");
 /**
- * 删除 css 的引入
+ * 删除  的引入
  */
 module.exports = function () {
   console.log(
     chalk.blue.bold(`
         --- --- ---
 
-        no-require-css 执行
+        no-require-json-list 执行
         
         --- --- ---
     `)
   );
 
   return {
-    name: "no-require-css",
+    name: "no-require-json-list",
     visitor: {
       ImportDeclaration(path, state) {
         let importFile = path.node.source.value;
-        if (importFile.indexOf(".scss") > -1) {
-          //如果引入了 css 需要干掉
+        if (importFile.indexOf("manifest.json") > -1) {
           path.remove();
         }
       },

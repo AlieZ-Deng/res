@@ -48,7 +48,8 @@
             "regenerator": true,
             "moduleName": "babel-runtime"
           }
-        ]
+        ],
+        "react-hot-loader/babel"
       ]
     }
   }

@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
+import "./index.scss";
 
 const Login = () => {
-    return <div>login</div>
-}
+  return <div className="login">login</div>;
+};
 
-export default Login
+export default Login;

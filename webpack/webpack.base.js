@@ -1,5 +1,7 @@
 const path = require("path");
 
+const { devHost, wdsPort } = require("./buildConfig/index");
+
 const mode = process.env.NODE_ENV || "development";
 
 module.exports = {
@@ -21,7 +23,10 @@ module.exports = {
                 process.env.NODE_ENV === "production"
                   ? "img/[name].[hash:8].[ext]"
                   : "img/[name].[ext]",
-              publicPath: "/",
+              publicPath:
+                process.env.NODE_ENV === "production"
+                  ? "/"
+                  : `http://${devHost}:${wdsPort}/`,
             },
           },
         ],
@@ -48,7 +53,7 @@ module.exports = {
           name: "common",
           chunks: "initial",
           priority: -20,
-        },
+        }
       },
     },
   },
